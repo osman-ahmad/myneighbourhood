@@ -1,0 +1,31 @@
+.app-header {
+  background-color: #076cf1;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.app-title {
+  color: #fff;
+  font-size: 24px;
+  margin: 0;
+}
+
+.sign-out-link {
+  color: #fff;
+  text-decoration: none;
+  font-size: 16px;
+  padding: 8px 16px;
+  background-color: #f44336;
+  border-radius: 4px;
+}
+
+.sign-out-link:hover {
+  background-color: #d32f2f;
+}
+
+.box {
+  background-color: #f0f0f0;
+  padding: 20px;
+}

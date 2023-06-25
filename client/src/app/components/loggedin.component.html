@@ -1,0 +1,30 @@
+<div class="loggedin-container">
+    <h2>Welcome, {{ name }}!</h2>
+    <div class="user-details">
+      <mat-card>
+        <mat-card-header>
+          <mat-card-title>User Details</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <div class="user-field">
+            <span class="field-label">Profile Pic:</span>
+            <img [src]="imageUrl" alt="User Image">
+          </div>
+          <div class="user-field">
+            <span class="field-label">Name:</span>
+            <span class="field-value">{{ name }}</span>
+          </div>
+          <div class="user-field">
+            <span class="field-label">Location:</span>
+            <span class="field-value">{{ location }}</span>
+          </div>
+          <div class="user-field">
+            <span class="field-label">Email:</span>
+            <span class="field-value">{{ email }}</span>
+          </div>
+          
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+  

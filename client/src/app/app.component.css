@@ -1,6 +1,6 @@
 .app-header {
   background-color: #076cf1;
-  padding: 10px;
+  padding: 20px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -8,8 +8,22 @@
 
 .app-title {
   color: #fff;
-  font-size: 24px;
+  font-size: 32px;
   margin: 0;
+}
+
+.auth-link {
+  color: #fff;
+  text-decoration: none;
+  font-size: 16px;
+  padding: 8px 16px;
+  background-color: #0953b4;
+  border-radius: 4px;
+  margin-left: 8px; /* Add some margin between the links */
+}
+
+.auth-link:hover {
+  background-color: #062a5a;
 }
 
 .sign-out-link {
@@ -17,12 +31,12 @@
   text-decoration: none;
   font-size: 16px;
   padding: 8px 16px;
-  background-color: #f44336;
+  background-color: #0953b4;
   border-radius: 4px;
 }
 
 .sign-out-link:hover {
-  background-color: #d32f2f;
+  background-color: #062a5a;
 }
 
 .box {

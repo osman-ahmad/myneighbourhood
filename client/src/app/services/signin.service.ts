@@ -18,11 +18,11 @@ export class SigninService {
     formData.set("location", form['location']);
     formData.set("email", form['email']);
     formData.set("password", form['password']);
-    // formData.set("profilePic", form['profilePic']);
-    formData.set("profilePic", image, image.name); // Set the image file with its name
+    
+    formData.set("profilePic", image, image.name); 
 
     const headers = new HttpHeaders();
-    headers.set('Content-Type', image.type); // Set the Content-Type dynamically based on the image file
+    headers.set('Content-Type', image.type);
 
     return firstValueFrom(this.httpClient.post<UploadResult>("/signin", formData, { headers }));
   }

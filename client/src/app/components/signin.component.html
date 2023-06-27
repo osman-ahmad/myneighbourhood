@@ -17,7 +17,7 @@
                     <td>
                         <mat-form-field appearance="fill">
                             <mat-label>Name</mat-label>
-                            <input matInput formControlName="name" placeholder="Enter your name">
+                            <input matInput id="name" formControlName="name" placeholder="Enter your name">
                             <mat-error *ngIf="form.get('name')?.hasError('required')">Name is required</mat-error>
                           </mat-form-field>
                     </td>
@@ -26,7 +26,7 @@
                     <td>
                         <mat-form-field appearance="fill">
                             <mat-label>Address</mat-label>
-                            <input matInput formControlName="location" placeholder="Enter your location">
+                            <input matInput id="address" formControlName="location" placeholder="Enter your location">
                             <mat-error *ngIf="form.get('location')?.hasError('required')">Location is required</mat-error>
                         </mat-form-field>
                     </td>
@@ -35,7 +35,7 @@
                     <td>
                         <mat-form-field appearance="fill">
                             <mat-label>Email</mat-label>
-                            <input matInput type="email" formControlName="email" placeholder="Enter your email">
+                            <input matInput id="email" type="email" formControlName="email" placeholder="Enter your email">
                             <mat-error *ngIf="form.get('email')?.hasError('required')">Email is required</mat-error>
                             <mat-error *ngIf="form.get('email')?.hasError('email')">Invalid email</mat-error>
                         </mat-form-field>
@@ -45,7 +45,7 @@
                     <td>
                         <mat-form-field appearance="fill">
                             <mat-label>Password</mat-label>
-                            <input matInput formControlName="password" type="password" placeholder="Enter your password">
+                            <input matInput id="password" formControlName="password" type="password" placeholder="Enter your password">
                             <mat-error *ngIf="form.get('password')?.hasError('required')">Password is required</mat-error>
                             <mat-error *ngIf="form.get('password')?.hasError('minlength')">Password must be at least 6 characters long</mat-error>
                         </mat-form-field>

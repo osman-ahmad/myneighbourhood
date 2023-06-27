@@ -5,31 +5,28 @@
       </mat-card-header>
       <mat-card-content>
         <form (ngSubmit)="onSubmit()" [formGroup]="loginForm">
-          <!-- Email input field -->
           <mat-form-field appearance="outline" class="full-width">
             <mat-label>Email</mat-label>
-            <input matInput formControlName="email" placeholder="Enter your email" type="email">
+            <input matInput id="email" formControlName="email" placeholder="Enter your email" type="email">
             <mat-error *ngIf="loginForm.get('email')?.invalid && loginForm.get('email')?.touched">
               Please enter a valid email address.
             </mat-error>
           </mat-form-field>
   
-          <!-- Password input field -->
           <mat-form-field appearance="outline" class="full-width">
             <mat-label>Password</mat-label>
-            <input matInput formControlName="password" placeholder="Enter your password" type="password">
+            <input matInput id="password" formControlName="password" placeholder="Enter your password" type="password">
             <mat-error *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched">
               Please enter a password.
             </mat-error>
           </mat-form-field>
   
-          <!-- Error message -->
+          
           <div *ngIf="loginError" class="error-message">
             Invalid email or password. Please try again.
             
           </div>
-          
-          <!-- Buttons -->
+   
           <button mat-raised-button color="primary" type="button" [routerLink]="['/']">Back</button>
           <button mat-raised-button color="warning" type="submit" [disabled]="loginForm.invalid">Login</button>
         </form>

@@ -13,13 +13,9 @@ export class FileuploadService {
 
   constructor(private httpClient: HttpClient) { }
 
-  // getImage(postId: string){
-  //   //by right  must use httpparams
-  //   return lastValueFrom(this.httpClient.get<UploadResult>('/get-image/' + postId));
-  // }
   async getImage(postId: string) {
     const result: UploadResult = await lastValueFrom(this.httpClient.get<UploadResult>('/get-image/' + postId));
-    const { imageUrl, title, complain } = result;
-    return { imageUrl, title, complain };
+    const { imageUrl , complain } = result;
+    return { imageUrl, complain };
   }
 }

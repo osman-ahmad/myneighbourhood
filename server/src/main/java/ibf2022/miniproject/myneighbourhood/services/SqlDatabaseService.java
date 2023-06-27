@@ -3,12 +3,14 @@ package ibf2022.miniproject.myneighbourhood.services;
 import java.io.IOException;
 import java.sql.Date;
 import java.sql.SQLException;
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 // import org.springframework.web.multipart.MultipartFile;
 
+import ibf2022.miniproject.myneighbourhood.model.Post;
 import ibf2022.miniproject.myneighbourhood.model.User;
 import ibf2022.miniproject.myneighbourhood.repositories.UserRepository;
 
@@ -34,5 +36,22 @@ public class SqlDatabaseService {
     public Optional<User> getDetailsByUserId(int userId){
         return this.userRepo.getDetailsByUserId(userId);
         
+    }
+
+    public void postUpload(int userId, String title, String description, String category, 
+    String imageUrl, Date postDate) throws SQLException, IOException {
+        this.userRepo.createPost(userId, title, description, category, imageUrl, postDate);
+    }
+
+    public List<Post> getPosts() throws SQLException, IOException {
+        return this.userRepo.getPosts();
+    }
+
+    public Optional<User> getLocationByUserId(int userId)  {
+        return this.userRepo.getLocationByUserId(userId);
+    }
+
+    public boolean deletePost(int postId) throws SQLException, IOException {
+        return this.userRepo.deletePost(postId);
     }
 }

@@ -16,8 +16,6 @@ public class User implements Serializable {
     private String password;
     private String userPicUrl;
     private Date joinDate;
-    // private List<Review> reviews;
-    // private List<Post> posts;
     public int getUserId() {
         return userId;
     }
@@ -86,13 +84,24 @@ public class User implements Serializable {
         user.setLocation(rs.getString("location"));
         user.setUserPicUrl(rs.getString("user_pic_url"));
         user.setEmail(rs.getString("email"));
+        user.setLat(rs.getDouble("lat"));
+        user.setLng(rs.getDouble("lng"));
         
         
         return user;
     }
-    public String getImageUrl() {
-        return null;
+
+    public static User populateLatNLng(ResultSet rs) throws SQLException{
+        final User user = new User(); 
+        user.setLat(rs.getDouble("lat"));
+        user.setLng(rs.getDouble("lng"));  
+        user.setLocation(rs.getString("location"));
+                  
+        return user;
     }
+    
+
+  
 
     
 }

@@ -12,7 +12,10 @@ export class SigninComponent implements OnInit {
   imageData = '';
   form!: FormGroup;
 
-  constructor(private router: Router, private formBuilder: FormBuilder, private signinSvc: SigninService) {}
+  constructor(
+    private router: Router, 
+    private formBuilder: FormBuilder, 
+    private signinSvc: SigninService) {}
 
   ngOnInit(): void {
     this.createForm();

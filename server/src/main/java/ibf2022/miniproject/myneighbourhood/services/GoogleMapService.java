@@ -25,11 +25,8 @@ public class GoogleMapService {
         System.out.println("geocodingUrl:>>>>>>>>> " + geocodingUrl);
         String jsonResponse = getJsonResponse(geocodingUrl);
         
-
-        // Pass the JSON response to the JsonParser class
         double[] coordinates = JsonParser.parseJson(jsonResponse);
-
-        // Return the latitude and longitude values
+        
         return coordinates;
     }
 
@@ -68,19 +65,16 @@ public class GoogleMapService {
     private static class JsonParser {
         public static double[] parseJson(String json) {
             double[] coordinates = new double[2];
-
-            // Parse the JSON   
+            
             JsonObject jsonObject = Json.createReader(new java.io.StringReader(json)).readObject();
             JsonArray results = jsonObject.getJsonArray("results");
             JsonObject firstResult = results.getJsonObject(0);
             JsonObject geometry = firstResult.getJsonObject("geometry");
             JsonObject location = geometry.getJsonObject("location");
-
-            // Extract the latitude and longitude   
+            
             double lat = location.getJsonNumber("lat").doubleValue();
             double lng = location.getJsonNumber("lng").doubleValue();
-
-            // Store the coordinates in the array
+            
             coordinates[0] = lat;
             coordinates[1] = lng;
 

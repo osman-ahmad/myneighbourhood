@@ -1,30 +1,163 @@
 <div class="loggedin-container">
-    <h2>Welcome, {{ name }}!</h2>
-    <div class="user-details">
-      <mat-card>
-        <mat-card-header>
-          <mat-card-title>User Details</mat-card-title>
-        </mat-card-header>
-        <mat-card-content>
-          <div class="user-field">
-            <span class="field-label">Profile Pic:</span>
-            <img [src]="imageUrl" alt="User Image">
+  <h2>Welcome, {{ name }}!</h2>
+
+  <div class="user-details">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>User Details</mat-card-title>
+      </mat-card-header>
+      <br>
+      <mat-card-content>
+        <div class="user-field">
+          <div class="profile-pic-container">
+            <img [src]="profilePicUrl" alt="User Image" class="profile-pic" />
           </div>
-          <div class="user-field">
-            <span class="field-label">Name:</span>
-            <span class="field-value">{{ name }}</span>
-          </div>
-          <div class="user-field">
-            <span class="field-label">Location:</span>
-            <span class="field-value">{{ location }}</span>
-          </div>
-          <div class="user-field">
-            <span class="field-label">Email:</span>
-            <span class="field-value">{{ email }}</span>
-          </div>
-          
-        </mat-card-content>
-      </mat-card>
-    </div>
+        </div>
+        <div class="user-field">
+          <span class="field-label">Name:</span>
+          <span class="field-value">{{ name }}</span>
+        </div>
+        <div class="user-field">
+          <span class="field-label">Location:</span>
+          <span class="field-value">{{ location }}</span>
+        </div>
+        <div class="user-field">
+          <span class="field-label">Email:</span>
+          <span class="field-value">{{ email }}</span>
+        </div>
+      </mat-card-content>
+    
+   
+      <div class="card-separator"></div>
+      <mat-card-content>
+        <mat-tab-group [(selectedIndex)]="activeTab">
+          <mat-tab label="Create a Post">
+            <mat-card-content fxLayout="column" fxLayoutAlign="center">
+              <div class="image-container">
+                <img [src]="imageData" class="thumbnail" *ngIf="imageData" />
+                <div class="upload-placeholder" *ngIf="!imageData">
+                  <span class="placeholder-text">Upload Photo</span>
+                </div>
+              </div>
+              <div>
+                <input type="file" accept="image/*" (change)="handleFileInput($event)" />
+              </div>
+              <br>
+              <form [formGroup]="form" (ngSubmit)="upload()">
+                <mat-form-field>
+                  <mat-label>Title</mat-label>
+                  <input matInput type="text" formControlName="title" placeholder="Enter title">
+                </mat-form-field>
+        
+                <mat-form-field>
+                  <mat-label>Category</mat-label>
+                  <mat-select formControlName="category">
+                    <mat-option value="foodNbeverage">Food and Beverage</mat-option>
+                    <mat-option value="tuition">Tuition</mat-option>
+                    <mat-option value="handyman">Handy Man</mat-option>
+                    <mat-option value="childcare">Childcare Service</mat-option>
+                    <mat-option value="printing">Printing Service</mat-option>
+                    <mat-option value="others">Others</mat-option>
+                  </mat-select>
+                </mat-form-field>
+        
+                <mat-form-field>
+                  <mat-label>Description</mat-label>
+                  <textarea matInput rows="4" formControlName="description" placeholder="Enter description"></textarea>
+                 
+                </mat-form-field>
+        
+                <button mat-raised-button color="primary" type="submit">Submit</button>
+              </form>
+            </mat-card-content>
+          </mat-tab>
+          <mat-tab label="View Your Posts">
+            <mat-card-content fxLayout="column" fxLayoutAlign="center">
+              <div class="box">
+                <div class="posts-container">
+                  <div class="post" *ngFor="let post of userPosts">
+                    <div class="post-details">
+                      <div class="post-image">
+                        <img [src]="post.imageUrl" alt="Post Image">
+                      </div>
+                      <div class="post-info">
+                        <h2 class="post-title">{{ post.title }}</h2>
+                        <div class="post-meta">
+                          <span class="meta-label"><strong>Category: </strong></span>
+                          <span class="category">{{ post.category }}</span>
+                        </div>
+                        <div class="post-meta">
+                          <span class="meta-label"><strong>Location: </strong></span>
+                          <span class="location">{{ post.location }}</span>
+                        </div>
+                        <div class="post-meta">
+                          <span class="meta-label"><strong>Date Post: </strong></span>
+                          <span class="date">{{ post.postDate }}</span>
+                        </div>
+                        <div class="post-meta">
+                          <span class="meta-label"><strong>Contact: </strong></span>
+                          <a href="https://t.me/ashihhhh" target="_blank">Telegram Msg</a>
+                        </div>
+                        <div class="post-meta-description">
+                          <span class="meta-label"><strong>Description Details Below: </strong></span>
+                          <div class="post-description">{{ post.description }}</div>
+                        </div>
+                        <input type="hidden" [value]="post.postId">
+                        <button mat-icon-button color="warn" (click)="deletePost(post.postId)">
+                          <mat-icon>delete</mat-icon>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </mat-card-content>
+          </mat-tab>
+          <mat-tab label="Neighbours' Posts">
+            <mat-card-content fxLayout="column" fxLayoutAlign="center">
+              <div class="box">
+                <div class="posts-container">
+                  <div class="post" *ngFor="let post of neighbourPosts">
+                    <div class="post-details">
+                      <div class="post-image">
+                        <img [src]="post.imageUrl" alt="Post Image">
+                      </div>
+                      <div class="post-info">
+                        <h2 class="post-title">{{ post.title }}</h2>
+                        <div class="post-meta">
+                          <span class="meta-label"><strong>Category: </strong></span>
+                          <span class="category">{{ post.category }}</span>
+                        </div>
+                        <div class="post-meta">
+                          <span class="meta-label"><strong>Location: </strong></span>
+                          <span class="location">{{ post.location }}</span>
+                        </div>
+                        <div class="post-distance" *ngIf="showDistance">
+                          <span class="meta-label"><strong>Distance: </strong></span>
+                          <span class="distance">{{ post.distance }} away from you</span>
+                        </div>
+                        <div class="post-meta">
+                          <span class="meta-label"><strong>Date Post: </strong></span>
+                          <span class="date">{{ post.postDate }}</span>
+                        </div>
+                        <div class="post-meta">
+                          <span class="meta-label"><strong>Contact: </strong></span>
+                          <a href="https://t.me/ashihhhh" target="_blank">Telegram Msg</a>
+                        </div>
+                        <div class="post-meta-description">
+                          <span class="meta-label"><strong>Description Details Below: </strong></span>
+                          <div class="post-description">{{ post.description }}</div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </mat-card-content>
+          </mat-tab>
+        </mat-tab-group>
+      </mat-card-content>
+    </mat-card>
   </div>
-  
+
+</div>

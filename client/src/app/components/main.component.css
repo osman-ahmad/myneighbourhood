@@ -1,0 +1,140 @@
+.app-header {
+  background-color: #076cf1;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.app-title {
+  color: #fff;
+  font-size: 24px;
+  margin: 0;
+}
+
+.top-box {
+  background-color: #fff;
+  padding: 5px;
+  width: 40%;
+  margin: 0 auto;
+  margin-bottom: 20px;
+  margin-top: 40px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  
+}
+
+.category-label,
+.address-label {
+  font-size: 18px;
+ 
+}
+
+.search-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20px;
+  margin-top: 40px;
+}
+
+.category-container,
+.address-container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.category-label,
+.address-label {
+  margin-right: 10px;
+}
+
+.address-container input {
+  width: 300px;
+}
+
+.box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #f0f0f0;
+  padding: 20px;
+}
+
+.posts-container {
+  display: grid;
+  width: 80%;
+  grid-template-columns: repeat(1, 1fr);
+  gap: 20px;
+}
+
+.post {
+  display: flex;
+  background-color: #fff;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.post-image {
+  flex: 0 0 150px;
+  max-width: 250px;
+  max-height: 200px;
+  border-top-left-radius: 4px;
+  border-bottom-left-radius: 4px;
+  object-fit: cover;
+
+}
+
+.post-details {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 20px;
+}
+
+.post-title {
+  font-size: 24px;
+  margin: 0 0 10px;
+  
+}
+
+.post-meta {
+  
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.post-meta-description {
+  
+  margin-top:10px;
+  font-size: 18px;
+  
+}
+
+.post-description {
+  margin-top: 5px;
+  font-size: 18px; 
+}
+
+.post-distance {
+  color: #888;
+  font-size: 14px;
+  text-align: center;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.mat-form-field {
+  margin-right: 10px;
+}
+
+.mat-select {
+  min-width: 200px;
+}
+

@@ -11,15 +11,15 @@ export class LoginService {
 
   async getInfo(emailParam: string, password: string) {
     const result: UploadResult = await lastValueFrom(this.httpClient.get<UploadResult>('/get-details/' + emailParam + '/' + password));
-    const { userId, imageUrl, name, location, email } = result;
-    return { userId, imageUrl, name, location, email };
+    const { userId } = result;
+    return { userId };
   }
 
-  async getInfoByUserId(userId: number) {
+  async getInfoByUserId(userId: string) {
     const result: UploadResult = await lastValueFrom(
       this.httpClient.get<UploadResult>('/get-details-by-userid/' + userId)
     );
-    const { imageUrl, name, location, email } = result;
-    return { userId, imageUrl, name, location, email };
+    const { profilePicUrl, name, location, email, lat, lng } = result;
+    return { userId, profilePicUrl, name, location, email, lat , lng };
   }
 }

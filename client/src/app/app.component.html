@@ -1,6 +1,12 @@
 <header class="app-header">
   <h1 class="app-title">My Neighbourhood App</h1>
-  <a *ngIf="isLoggedinPage()" [routerLink]="['/']" class="sign-out-link">Sign Out</a>
+  <<div class="auth-links">
+    <a *ngIf="isLoggedinPage()" [routerLink]="['/']" class="sign-out-link">Sign Out</a>
+    <a *ngIf="!isLoggedinPage() && isMainPage()" [routerLink]="['/login']" class="auth-link">Login</a>
+    <a *ngIf="!isLoggedinPage() && isMainPage()" [routerLink]="['/signin']" class="auth-link">SignUp</a>
+  </div>
+  
+  
 </header>
 
 <div class="box">

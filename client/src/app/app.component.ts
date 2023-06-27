@@ -15,4 +15,11 @@ export class AppComponent {
   isLoggedinPage(): boolean {
     return this.router.url.includes('/loggedin/');
   }
+
+  isMainPage(): boolean {
+    return this.router.url  === '/' ;
+  }
+
+
+  
 }

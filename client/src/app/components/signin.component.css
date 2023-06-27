@@ -1,11 +1,9 @@
-/* Global styles */
 body {
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
 }
 
-/* App component styles */
 .app-title {
   text-align: center;
   font-size: 24px;
@@ -18,7 +16,6 @@ body {
   padding: 20px;
 }
 
-/* Signin component styles */
 .signin-card {
   display: flex;
   justify-content: center;
@@ -34,7 +31,6 @@ body {
   margin-bottom: 20px;
 }
 
-/* Customize form appearance */
 .mat-form-field {
   width: 100%;
   margin-bottom: 20px;

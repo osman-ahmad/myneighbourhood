@@ -1,13 +1,69 @@
-<p>main works!</p>
-<mat-card>
-    <mat-card-content fxLayout="column" fxLayoutAlign="center">
-      <a [routerLink]="['/login']">Login</a>
-      <br>
-      <a [routerLink]="['/signin']">Sign Up</a>
-      <br>
-      
-      <!-- hardcoded image id -->
-      <!-- <a [routerLink]="['/image/5']">view Image</a>  -->
+<div class="top-box">
+  <div class="search-container">
+    <div class="category-container">
+      <span class="category-label">Choose what you are looking for:</span>
+      <mat-form-field>
+        <mat-label>Category</mat-label>
+        <mat-select [(ngModel)]="selectedCategory">
+          <mat-option value="foodNbeverage">Food and Beverage</mat-option>
+          <mat-option value="tuition">Tuition</mat-option>
+          <mat-option value="handyman">Handy Man</mat-option>
+          <mat-option value="childcare">Childcare Service</mat-option>
+          <mat-option value="printing">Printing Service</mat-option>
+          <mat-option value="others">Others</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div class="address-container">
+      <span class="address-label">Search the nearby address:</span>
+      <mat-form-field>
+        <input matInput placeholder="Enter Address" [(ngModel)]="searchAddress">
+      </mat-form-field>
+    </div>
+    <button mat-raised-button color="primary" (click)="searchPosts()">Search</button>
+  </div>
+</div>
 
-    </mat-card-content>
-</mat-card>
+<div class="box">
+  <div class="posts-container">
+    <div class="post" *ngFor="let post of filteredPosts">
+      <div class="post-image">
+        <img [src]="post.imageUrl" alt="Post Image" style=" width: 250px;
+        height: 100%;">
+      </div>
+      
+      <div class="post-details">
+        <h2 class="post-title" ><strong>{{ post.title }}</strong></h2>
+        <div class="post-meta">
+          <span class="meta-label"><strong>Category: </strong></span>
+          <span class="category">{{ post.category }}</span>
+        </div>
+        <div class="post-meta">
+          <span class="meta-label"><strong>Location: </strong></span>
+          <span class="location">{{ post.location }}</span>
+        </div>
+        <div class="post-meta">
+          <span class="meta-label"><strong>Date Post: </strong></span>
+          <span class="link">{{ post.postDate }}</span>
+        </div>
+        <div class="post-meta">
+          <span class="meta-label"><strong>Contact: </strong></span>
+          <a href="https://t.me/ashihhhh" target="_blank">Telegram Msg</a>
+        </div>
+        <div class="post-meta-description">
+        <span class="meta-label"><strong>Description Details Below: </strong></span>
+        
+        <div class="post-description">{{ post.description }}</div>
+        <div class="post-distance" *ngIf="showDistance">
+          <span class="distance">{{ post.distance }}away from you</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="pagination" *ngIf="totalPages > 1">
+    <button mat-raised-button color="primary" (click)="previousPage()" [disabled]="currentPage === 1">Previous</button>
+    <button mat-raised-button color="primary" (click)="nextPage()" [disabled]="currentPage === totalPages">Next</button>
+  </div>
+</div>
+

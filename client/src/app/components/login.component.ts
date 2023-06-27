@@ -39,19 +39,15 @@ export class LoginComponent implements OnInit {
 
     try {
       const loginResult = await this.loginService.getInfo(email, password);
-      // Process the login result here
       console.log(loginResult);
-      // Redirect to the loggedin page with email and password parameters
       this.router.navigate(['/loggedin', loginResult.userId]);
     } catch (error) {
-      // Handle any errors that occur during login
       console.error('Login error:', error);
       if (error) {
         this.loginError = true;
       }
     }
 
-    // Reset the form
     this.loginForm.reset();
   }
 }

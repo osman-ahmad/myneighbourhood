@@ -88,14 +88,14 @@ export class LoggedinComponent implements OnInit, OnDestroy {
       this.posts = data;
       this.userPost();
       this.neighbourPost();
-      
+      this.posts.forEach((post) => this.calculateDistance(post));
     } catch (error) {
       
     }
   }
 
   userPost(): void {
-    const userIdInt = parseInt(this.userId, 10); // Convert this.userId to an integer
+    const userIdInt = parseInt(this.userId, 10); 
 
     this.userPosts = this.posts.filter((post) => {
       const postUserIdInt = parseInt(post.userId, 10);
@@ -112,6 +112,7 @@ export class LoggedinComponent implements OnInit, OnDestroy {
   }
 
   neighbourPost(): void {
+    // location.reload();
     const userIdInt = parseInt(this.userId, 10); 
 
     this.neighbourPosts = this.posts.filter((post) => {
@@ -152,7 +153,7 @@ export class LoggedinComponent implements OnInit, OnDestroy {
           this.router.navigate(['/loggedin/', userId]);
           this.form.reset();
           this.imageData = '';
-          // location.reload();
+          location.reload();
         })
         .catch((error) => console.log(error));
     }
@@ -185,10 +186,12 @@ export class LoggedinComponent implements OnInit, OnDestroy {
   calculateDistance(post: Post): void {
     const userLatitude = parseFloat(this.latResult); 
     const userLongitude = parseFloat(this.lngResult);
-   
+    console.log(userLatitude);
+    console.log(userLongitude);
     const postLatitude = post.lat;
     const postLongitude = post.lng;
-   
+    console.log(postLatitude);
+    console.log(postLongitude);  
     const earthRadius = 6371; 
     const userLatRad = this.degreesToRadians(userLatitude);
     const userLngRad = this.degreesToRadians(userLongitude);

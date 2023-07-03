@@ -19,7 +19,7 @@
   padding: 8px 16px;
   background-color: #0953b4;
   border-radius: 4px;
-  margin-left: 8px; /* Add some margin between the links */
+  margin-left: 8px; 
 }
 
 .auth-link:hover {

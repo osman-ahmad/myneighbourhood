@@ -3,6 +3,7 @@ package ibf2022.miniproject.myneighbourhood.controller;
 import java.io.IOException;
 import java.sql.Date;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Optional;
 
@@ -183,6 +184,9 @@ public class MyNeighbourHoodController {
         List<Post> posts = this.sqlDatabaseService.getPosts();
         JsonArrayBuilder arrayBuilder = Json.createArrayBuilder();
         for (Post p : posts) {
+            Date postDate = p.getPostDate();
+            SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+            String formattedDate = sdf.format(postDate);
             Optional<User> u = this.sqlDatabaseService.getLocationByUserId(p.getUserId());
             JsonObject payload = Json.createObjectBuilder()
                                 .add("postId", p.getPostId())
@@ -191,7 +195,7 @@ public class MyNeighbourHoodController {
                                 .add("description", p.getDescription())
                                 .add("category", p.getCategory())
                                 .add("imageUrl", p.getImageUrl())
-                                .add("postDate", p.getPostDate().toString())
+                                .add("postDate", formattedDate)
                                 .add("location", u.get().getLocation())
                                 .add("lat", u.get().getLat())
                                 .add("lng", u.get().getLng())

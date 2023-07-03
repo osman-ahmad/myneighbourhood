@@ -13,7 +13,7 @@ interface Post {
   title: string;
   category: string;
   location: string;
-  postDate: String;
+  postDate: Date;
   userId: string;
   description: string;
   lat: number;
@@ -74,8 +74,8 @@ export class LoggedinComponent implements OnInit, OnDestroy {
       this.latResult = r.lat;
       this.lngResult = r.lng;
 
-      this.posts.forEach((post) => this.calculateDistance(post));
-    });
+      
+      });
   }
 
   ngOnDestroy(): void {
@@ -86,11 +86,22 @@ export class LoggedinComponent implements OnInit, OnDestroy {
     try {
       const data = await this.fetchpostsSvc.getPosts();
       this.posts = data;
+  
+      this.posts.forEach((post) => this.calculateDistance(post));
+      this.posts.sort((a, b) => {
+        const distanceA = parseFloat(a.distance);
+        const distanceB = parseFloat(b.distance);
+        return distanceA - distanceB;
+      });
+  
       this.userPost();
       this.neighbourPost();
-      this.posts.forEach((post) => this.calculateDistance(post));
-    } catch (error) {
+  
       
+
+      
+    } catch (error) {
+      console.error('Login error:', error);
     }
   }
 
@@ -112,9 +123,8 @@ export class LoggedinComponent implements OnInit, OnDestroy {
   }
 
   neighbourPost(): void {
-    // location.reload();
     const userIdInt = parseInt(this.userId, 10); 
-
+  
     this.neighbourPosts = this.posts.filter((post) => {
       const postUserIdInt = parseInt(post.userId, 10);
       if (userIdInt && postUserIdInt !== userIdInt) {
@@ -122,12 +132,14 @@ export class LoggedinComponent implements OnInit, OnDestroy {
       }
       return false;
     });
-
-    console.log(this.neighbourPosts);
-    this.totalPages = Math.ceil(this.userPosts.length / this.pageSize);
+  
+    
+  
+    this.totalPages = Math.ceil(this.neighbourPosts.length / this.pageSize);
     this.currentPage = 1;
     this.showDistance = true;
   }
+  
 
   handleFileInput(event: any): void {
     const file = event.target.files[0];
@@ -207,15 +219,8 @@ export class LoggedinComponent implements OnInit, OnDestroy {
     const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
     const distance = earthRadius * c;
 
-    if (distance < 1) {
-      post.distance = +(distance * 1000).toFixed(0) + 'm';
-    } else {
-      post.distance = +(distance).toFixed(2) + 'km';
-    }
+    post.distance = +(distance * 1000).toFixed(0) + 'm';
     console.log(post.distance);
-    const postDate = new Date(post.postDate.toString());
-    const formattedDate = `${postDate.getDate()}-${postDate.getMonth() + 1}-${postDate.getFullYear()}`;
-    post.postDate = formattedDate;
   }
 
   private degreesToRadians(degrees: number): number {

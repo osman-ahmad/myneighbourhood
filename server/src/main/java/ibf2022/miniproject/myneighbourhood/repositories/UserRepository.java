@@ -36,7 +36,7 @@ public class UserRepository {
             = "insert into posts (user_id, description, title, category, image_url, post_date) values (?, ?, ?, ?, ?, ?)";
 
     private static final String GET_POSTS_SQL
-            = "select * from posts order by post_date, description";
+            = "select * from posts order by post_date DESC, description";
     
     private static final String DELETE_POST_BY_POSTID
             = "delete from posts where post_id = ?";

@@ -3,7 +3,7 @@ export interface PostResults {
     postId: string;
     title: string;
     location: string;
-    postDate: string;
+    postDate: Date;
     description: string;
     imageUrl: string;
     category: string;

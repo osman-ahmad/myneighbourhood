@@ -1,7 +1,7 @@
 <div class="top-box">
   <div class="search-container">
     <div class="category-container">
-      <span class="category-label">Choose what you are looking for:</span>
+      <span class="category-label">Looking for something?</span>
       <mat-form-field>
         <mat-label>Category</mat-label>
         <mat-select [(ngModel)]="selectedCategory">
@@ -15,7 +15,7 @@
       </mat-form-field>
     </div>
     <div class="address-container">
-      <span class="address-label">Search the nearby address:</span>
+      <span class="address-label">Search nearby:</span>
       <mat-form-field>
         <input matInput placeholder="Enter Address" [(ngModel)]="searchAddress">
       </mat-form-field>
@@ -48,12 +48,13 @@
         </div>
         <div class="post-meta">
           <span class="meta-label"><strong>Contact: </strong></span>
-          <a href="https://t.me/ashihhhh" target="_blank">Telegram Msg</a>
+          <a href="https://t.me/testAcct" target="_blank">Telegram Msg</a>
         </div>
         <div class="post-meta-description">
         <span class="meta-label"><strong>Description Details Below: </strong></span>
         
         <div class="post-description">{{ post.description }}</div>
+        <br>
         <div class="post-distance" *ngIf="showDistance">
           <span class="distance">{{ post.distance }} away from you</span>
         </div>

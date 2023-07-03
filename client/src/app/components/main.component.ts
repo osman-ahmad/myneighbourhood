@@ -7,7 +7,7 @@ interface Post {
   title: string;
   category: string;
   location: string;
-  postDate: String;
+  postDate: Date;
   description: string;
   lat: number;
   lng: number;
@@ -48,7 +48,7 @@ export class MainComponent {
       this.posts.forEach((post) => this.calculateDistance(post));
       this.filterPosts();
     } catch (error) {
-      
+      console.error('Login error:', error);
     }
   }
 
@@ -75,6 +75,14 @@ export class MainComponent {
     const locationResult = await this.fetchpostsSvc.getLatNLng(this.searchAddress);
     this.latResult = locationResult.lat;
     this.lngResult = locationResult.lng;
+
+
+    this.filteredPosts.forEach((post) => this.calculateDistance(post));
+    this.filteredPosts.sort((a, b) => {
+      const distanceA = parseFloat(a.distance);
+      const distanceB = parseFloat(b.distance);
+      return distanceA - distanceB;
+    });
 
     this.filteredPosts.forEach((post) => this.calculateDistance(post));
     
@@ -114,14 +122,7 @@ export class MainComponent {
     const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
     const distance = earthRadius * c;
   
-    if (distance < 1) {
-    post.distance = +(distance * 1000).toFixed(0) + 'm';
-  } else {
-    post.distance = +(distance).toFixed(2) + 'km';
-  }
-  const postDate = new Date(post.postDate.toString());
-  const formattedDate = `${postDate.getDate()}-${postDate.getMonth() + 1}-${postDate.getFullYear()}`;
-  post.postDate = formattedDate;
+    post.distance = +(distance * 1000).toFixed(0) + 'm';;
 }
 
   private degreesToRadians(degrees: number) {
